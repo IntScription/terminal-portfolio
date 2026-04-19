@@ -69,11 +69,18 @@ export type StaticPage = {
   body: string;
 };
 
-export type PreviewState = {
-  title?: string;
-  description?: string;
-  href?: string;
-} | null;
+export type PreviewState =
+  | { type: "home" }
+  | { type: "projects" }
+  | { type: "project"; slug: string }
+  | { type: "blog" }
+  | { type: "post"; slug: string }
+  | { type: "about" }
+  | { type: "setup" }
+  | { type: "contact" }
+  | { type: "resume" }
+  | { type: "not-found"; value: string }
+  | null;
 
 export type BlogPost = {
   slug: string;

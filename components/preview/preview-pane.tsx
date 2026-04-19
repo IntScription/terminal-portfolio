@@ -1,57 +1,65 @@
-import { pages } from "@/data/pages";
-import { posts } from "@/data/posts";
-import { projects } from "@/data/projects";
 import { EmptyView } from "@/components/preview/empty-view";
 import { ProjectView } from "@/components/preview/project-view";
 import { BlogView } from "@/components/preview/blog-view";
 import { PageView } from "@/components/preview/page-view";
-import { PreviewState } from "@/lib/types";
+import { PreviewState, BlogPost, StaticPage } from "@/lib/types";
+
+type Project = {
+  slug: string;
+  title: string;
+  description?: string;
+  body?: string;
+};
+
+type PagesMap = {
+  about: StaticPage;
+  setup: StaticPage;
+  contact: StaticPage;
+  resume: StaticPage;
+};
 
 export function PreviewPane({
   preview,
   onRunCommand,
+  pages,
+  posts,
+  projects,
 }: {
   preview: PreviewState;
   onRunCommand: (value: string) => void;
+  pages: PagesMap;
+  posts: BlogPost[];
+  projects: Project[];
 }) {
+  if (!preview) {
+    return <EmptyView onRunCommand={onRunCommand} />;
+  }
+
   switch (preview.type) {
     case "home":
       return <EmptyView onRunCommand={onRunCommand} />;
 
     case "projects":
-      return (
-        <ProjectView
-          projects={projects}
-          onRunCommandAction={onRunCommand}
-        />
-      );
+      return <ProjectView projects={projects} />;
 
     case "project": {
-      const project = projects.find((item) => item.slug === preview.slug);
+      const project = projects.find((item: Project) => item.slug === preview.slug);
 
       return project ? (
-        <ProjectView
-          projects={[project]}
-          featured
-          onRunCommandAction={onRunCommand}
-        />
+        <ProjectView projects={[project]} featured />
       ) : (
         <EmptyView onRunCommand={onRunCommand} />
       );
     }
 
     case "blog":
-      return <BlogView posts={posts} onRunCommand={onRunCommand} />;
+      return <BlogView posts={posts} />;
 
     case "post": {
-      const post = posts.find((item) => item.slug === preview.slug);
+      const post = posts.find((item: BlogPost) => item.slug === preview.slug);
 
       return post ? (
-        <BlogView
-          posts={[post]}
-          featured
-          onRunCommand={onRunCommand}
-        />
+        <BlogView posts={[post]} featured />
       ) : (
         <EmptyView onRunCommand={onRunCommand} />
       );
