@@ -76,8 +76,10 @@ export type PreviewState = {
 } | null;
 
 export type BlogPost = {
+  slug: string;
   title: string;
   publishedAt: string;
   tags: string[];
   body: string;
+  excerpt?: string;
 };
