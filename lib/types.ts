@@ -74,3 +74,10 @@ export type PreviewState = {
   description?: string;
   href?: string;
 } | null;
+
+export type BlogPost = {
+  title: string;
+  publishedAt: string;
+  tags: string[];
+  body: string;
+};
