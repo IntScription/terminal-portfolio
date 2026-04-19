@@ -1,0 +1,28 @@
+{
+  "title": "Rest Assured",
+  "slug": "rest-assured",
+  "tagline": "A full-stack fitness logging platform focused on training, progress tracking, and modern DevOps delivery.",
+  "description": "Rest Assured is a cross-platform health and fitness logging platform built as both a practical training tool and a DevOps learning project. It combines a Next.js web app, a React Native mobile app, Supabase authentication and database services, and a containerized deployment workflow using Docker, GitHub Actions, GHCR, and Kubernetes.",
+  "stack": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "React Native",
+    "Expo",
+    "Supabase",
+    "PostgreSQL",
+    "Docker",
+    "GitHub Actions",
+    "Kubernetes",
+    "TypeScript",
+    "Vercel"
+  ],
+  "liveUrl": "https://rest-assured-rho.vercel.app",
+  "repoUrl": "https://github.com/IntScription/rest-assured",
+  "appStoreUrl": "https://apps.apple.com/in/app/rest-assured-workout-log/id6760107763",
+  "playStoreUrl": "",
+  "image": "/screenshots/rest-assured.png",
+  "featured": true,
+  "published": true,
+  "order": 10
+}

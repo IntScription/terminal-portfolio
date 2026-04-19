@@ -1,0 +1,18 @@
+{
+  "title": "Now",
+  "intro": "What I am currently focused on, learning, and building right now.",
+  "items": [
+    {
+      "label": "Building",
+      "value": "Improving this terminal-first portfolio and starting to turn it into a more complete product showcase."
+    },
+    {
+      "label": "Learning",
+      "value": "Better frontend polish, animation systems, product storytelling, and richer UI architecture."
+    },
+    {
+      "label": "Exploring",
+      "value": "Game systems, developer workflow tooling, interface feel, and more premium project presentation."
+    }
+  ]
+}

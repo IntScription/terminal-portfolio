@@ -1,0 +1,37 @@
+## Overview
+
+Rest Assured is a full-stack health and fitness logging platform designed to help users create exercises, organize training splits, log workouts, and review training history across both web and mobile experiences. It also doubles as a portfolio-grade DevOps project, showing the full path from application code to containerization, CI, registry publishing, and Kubernetes deployment.
+
+## Challenge
+
+The main challenge was building something that was useful as a product, not just technically impressive as a portfolio piece. The platform needed to support real fitness tracking workflows while also proving out a stronger engineering setup: authentication, data persistence, cross-platform development, containerized local workflows, CI automation, image publishing, and Kubernetes-based deployment.
+
+A second challenge was keeping the architecture understandable while spanning multiple layers: web, mobile, backend services, infrastructure, and deployment scripts.
+
+## Solution
+
+I built Rest Assured as a multi-part project with a clear repository structure:
+
+- a `web/` application using Next.js
+- a `mobile/` application using React Native + Expo
+- Supabase and PostgreSQL for authentication and data
+- Docker and Docker Compose for containerized workflows
+- GitHub Actions for CI
+- GitHub Container Registry for image publishing
+- Kubernetes manifests and deploy scripts under `infra/` for deployment automation
+
+This made the project useful in two ways: as a real fitness logging platform and as a structured environment for learning and demonstrating modern DevOps workflows.
+
+## Outcome
+
+The result is a cross-platform fitness application backed by a modern deployment pipeline. Users can manage workout data and account flows, while the project itself demonstrates how application development and infrastructure can be tied together in one coherent system.
+
+It became a stronger showcase piece because it does more than present frontend screens. It shows application architecture, CI/CD thinking, containerization, and deployment strategy in one repo.
+
+## Highlights
+
+- Cross-platform product with both a Next.js web app and a React Native + Expo mobile app
+- Workout tracking features including exercises, splits, logs, and training history
+- Supabase authentication and PostgreSQL-backed persistence
+- DevOps pipeline using Docker, GitHub Actions, GHCR, and Kubernetes
+- Repository structured to separate product code from infrastructure and deployment scripts

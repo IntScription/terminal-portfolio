@@ -1,0 +1,48 @@
+{
+  "name": "Kartik Sanil",
+  "title": "Full Stack Developer · UI/UX Builder",
+  "tagline": "I build systems that feel as good as they work.",
+  "location": "India",
+  "email": "22kartiksanil@gmail.com",
+  "focus": [
+    "Full-stack product development",
+    "Terminal-inspired UI/UX",
+    "Cross-platform apps",
+    "System design and workflows",
+    "Interactive interfaces",
+    "Game and creative tech experimentation"
+  ],
+  "highlights": [
+    {
+      "label": "Primary Stack",
+      "value": "Next.js · React Native · TypeScript"
+    },
+    {
+      "label": "Focus",
+      "value": "Products + UI Systems"
+    },
+    {
+      "label": "Style",
+      "value": "Minimal, fast, polished"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Projects",
+      "value": "5+"
+    },
+    {
+      "label": "Focus Area",
+      "value": "Full Stack + UI"
+    },
+    {
+      "label": "Approach",
+      "value": "System-driven"
+    }
+  ],
+  "status": {
+    "current": "Building projects, refining portfolio, exploring deeper systems",
+    "learning": "DevOps, advanced UI systems, performance",
+    "goal": "Create high-quality, system-driven products"
+  }
+}

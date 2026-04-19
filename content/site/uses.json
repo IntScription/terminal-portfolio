@@ -1,0 +1,327 @@
+{
+  "title": "Tools, workflow, and systems.",
+  "intro": "This is the stack and setup behind how I build across web, app, interface, and systems-oriented work. It is less about listing tools and more about showing how the pieces fit together when turning ideas into polished builds.",
+  "groups": [
+    {
+      "title": "Frontend / Web",
+      "items": [
+        {
+          "name": "HTML",
+          "description": "Base structure for web pages, content hierarchy, and semantic layout.",
+          "category": "language",
+          "related": [
+            "CSS",
+            "JavaScript",
+            "Next.js"
+          ]
+        },
+        {
+          "name": "CSS",
+          "description": "Core styling layer for layout, spacing, responsiveness, and visual presentation.",
+          "category": "ui",
+          "related": [
+            "HTML",
+            "JavaScript",
+            "Tailwind"
+          ]
+        },
+        {
+          "name": "JavaScript",
+          "description": "Core language for browser logic, interactivity, and full-stack JavaScript workflows.",
+          "category": "language",
+          "related": [
+            "HTML",
+            "CSS",
+            "TypeScript",
+            "Node.js",
+            "Next.js"
+          ]
+        },
+        {
+          "name": "Next.js",
+          "description": "Main web framework used for the portfolio and full-stack product interfaces.",
+          "category": "framework",
+          "related": [
+            "TypeScript",
+            "Tailwind",
+            "Supabase",
+            "JavaScript",
+            "Node.js",
+            "React"
+          ]
+        },
+        {
+          "name": "React",
+          "description": "Component-driven UI library behind much of the interactive frontend work.",
+          "category": "framework",
+          "related": [
+            "JavaScript",
+            "TypeScript",
+            "Next.js",
+            "React Native"
+          ]
+        },
+        {
+          "name": "Tailwind",
+          "description": "Utility-first styling system for building polished interfaces quickly and consistently.",
+          "category": "ui",
+          "related": [
+            "CSS",
+            "Next.js",
+            "TypeScript",
+            "Terminal UX"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "App / Mobile",
+      "items": [
+        {
+          "name": "React Native",
+          "description": "Cross-platform mobile app framework for product, app, and interface experiments.",
+          "category": "framework",
+          "related": [
+            "React",
+            "TypeScript",
+            "Supabase",
+            "Swift"
+          ]
+        },
+        {
+          "name": "Expo",
+          "description": "Development layer that speeds up React Native workflows and iteration.",
+          "category": "framework",
+          "related": [
+            "React Native",
+            "TypeScript"
+          ]
+        },
+        {
+          "name": "Swift",
+          "description": "Used for native Apple-side experimentation and app/game-oriented work.",
+          "category": "language",
+          "related": [
+            "React Native",
+            "Game Dev"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Backend / Infra",
+      "items": [
+        {
+          "name": "Node.js",
+          "description": "JavaScript runtime used for backend logic, tooling, and full-stack workflows.",
+          "category": "backend",
+          "related": [
+            "JavaScript",
+            "TypeScript",
+            "Next.js",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Supabase",
+          "description": "Backend layer for auth, database, storage, and modern app services.",
+          "category": "backend",
+          "related": [
+            "Next.js",
+            "React Native",
+            "TypeScript",
+            "Node.js",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "name": "PostgreSQL",
+          "description": "Relational database layer behind structured application data.",
+          "category": "backend",
+          "related": [
+            "Supabase",
+            "Node.js"
+          ]
+        },
+        {
+          "name": "Docker",
+          "description": "Containerization for consistent environments, services, and deployments.",
+          "category": "infra",
+          "related": [
+            "Node.js",
+            "Kubernetes",
+            "DevOps"
+          ]
+        },
+        {
+          "name": "Kubernetes",
+          "description": "Orchestration layer for deeper infra-oriented deployment work.",
+          "category": "infra",
+          "related": [
+            "Docker",
+            "DevOps"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Languages / Core systems",
+      "items": [
+        {
+          "name": "TypeScript",
+          "description": "Shared typed language across frontend, app, backend, and UI logic.",
+          "category": "language",
+          "related": [
+            "JavaScript",
+            "Next.js",
+            "React",
+            "React Native",
+            "Supabase",
+            "Tailwind",
+            "Node.js"
+          ]
+        },
+        {
+          "name": "Git",
+          "description": "Version control foundation for maintaining code history and collaborative workflows.",
+          "category": "system",
+          "related": [
+            "GitHub",
+            "DevOps"
+          ]
+        },
+        {
+          "name": "GitHub",
+          "description": "Code hosting, collaboration, and project versioning platform.",
+          "category": "system",
+          "related": [
+            "Git",
+            "CI/CD",
+            "DevOps"
+          ]
+        },
+        {
+          "name": "Terminal UX",
+          "description": "Terminal-first interaction layer and workspace concept behind this portfolio.",
+          "category": "system",
+          "related": [
+            "Next.js",
+            "Tailwind",
+            "TypeScript",
+            "UI/UX Design"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Design / Interface",
+      "items": [
+        {
+          "name": "UI/UX Design",
+          "description": "Interface thinking around hierarchy, clarity, flow, and interaction polish.",
+          "category": "ui",
+          "related": [
+            "Tailwind",
+            "Terminal UX",
+            "Framer Motion"
+          ]
+        },
+        {
+          "name": "Framer Motion",
+          "description": "Animation layer for smooth, expressive, and polished UI interactions.",
+          "category": "ui",
+          "related": [
+            "Next.js",
+            "React",
+            "UI/UX Design"
+          ]
+        },
+        {
+          "name": "Figma",
+          "description": "Tool for layout planning, UI exploration, and visual system thinking.",
+          "category": "ui",
+          "related": [
+            "UI/UX Design"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Productivity / Workflow",
+      "items": [
+        {
+          "name": "VS Code",
+          "description": "Primary general-purpose code editor for development and iteration.",
+          "category": "system",
+          "related": [
+            "TypeScript",
+            "Next.js",
+            "Node.js"
+          ]
+        },
+        {
+          "name": "Xcode",
+          "description": "Apple development environment used for native app and Swift work.",
+          "category": "system",
+          "related": [
+            "Swift",
+            "React Native"
+          ]
+        },
+        {
+          "name": "Neovim",
+          "description": "Keyboard-driven editing environment and workflow experimentation.",
+          "category": "system",
+          "related": [
+            "Terminal UX",
+            "Git"
+          ]
+        },
+        {
+          "name": "DevOps",
+          "description": "Workflow mindset around deployment, automation, consistency, and shipping systems properly.",
+          "category": "infra",
+          "related": [
+            "Docker",
+            "Kubernetes",
+            "GitHub",
+            "CI/CD"
+          ]
+        },
+        {
+          "name": "CI/CD",
+          "description": "Automation pipeline thinking for testing, integration, and deployment workflows.",
+          "category": "infra",
+          "related": [
+            "GitHub",
+            "DevOps",
+            "Docker"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Creative / Exploration",
+      "items": [
+        {
+          "name": "Game Dev",
+          "description": "Experimental area combining systems design, interaction, performance, and creative problem solving.",
+          "category": "system",
+          "related": [
+            "Swift",
+            "UI/UX Design"
+          ]
+        },
+        {
+          "name": "Content / Writing",
+          "description": "Writing and articulation layer for documenting process, ideas, and learnings.",
+          "category": "system",
+          "related": [
+            "Terminal UX",
+            "UI/UX Design"
+          ]
+        }
+      ]
+    }
+  ]
+}
