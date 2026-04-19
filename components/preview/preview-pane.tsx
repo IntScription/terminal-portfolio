@@ -1,91 +1,95 @@
-import { EmptyView } from "@/components/preview/empty-view";
-import { ProjectView } from "@/components/preview/project-view";
-import { BlogView } from "@/components/preview/blog-view";
-import { PageView } from "@/components/preview/page-view";
-import { PreviewState, BlogPost, StaticPage } from "@/lib/types";
+import Image from "next/image";
+import { SectionPill } from "@/components/ui/section-pill";
+import { Project } from "@/lib/types";
 
-type Project = {
-  slug: string;
-  title: string;
-  description?: string;
-  body?: string;
-};
-
-type PagesMap = {
-  about: StaticPage;
-  setup: StaticPage;
-  contact: StaticPage;
-  resume: StaticPage;
-};
-
-export function PreviewPane({
-  preview,
-  onRunCommand,
-  pages,
-  posts,
+export function ProjectView({
   projects,
+  featured = false,
 }: {
-  preview: PreviewState;
-  onRunCommand: (value: string) => void;
-  pages: PagesMap;
-  posts: BlogPost[];
   projects: Project[];
+  featured?: boolean;
 }) {
-  if (!preview) {
-    return <EmptyView onRunCommand={onRunCommand} />;
-  }
+  return (
+    <section className="min-h-140 rounded-[28px] border border-black/8 bg-white/50 p-6 backdrop-blur-2xl dark:border-white/15 dark:bg-white/5">
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <div>
+          <p className="text-xs uppercase tracking-[0.28em] text-foreground/60">
+            projects
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            {featured ? projects[0]?.title : "Featured work"}
+          </h2>
+        </div>
+      </div>
 
-  switch (preview.type) {
-    case "home":
-      return <EmptyView onRunCommand={onRunCommand} />;
+      <div className="grid gap-4">
+        {projects.map((project: Project) => (
+          <article
+            id={project.slug}
+            key={project.slug}
+            className="scroll-mt-28 rounded-3xl border border-black/8 bg-white/50 p-5 transition hover:border-black/12 hover:bg-white/70 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/[0.07]"
+          >
+            <div className="flex flex-col gap-5">
+              {project.image && (
+                <div className="relative h-52 overflow-hidden rounded-2xl border border-black/8 dark:border-white/10">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition duration-500 hover:scale-105"
+                  />
+                </div>
+              )}
 
-    case "projects":
-      return <ProjectView projects={projects} />;
+              <div>
+                <h3 className="text-xl font-semibold">{project.title}</h3>
+                <p className="mt-2 text-sm text-foreground/72">
+                  {project.tagline}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-foreground/78">
+                  {project.description}
+                </p>
+              </div>
 
-    case "project": {
-      const project = projects.find((item: Project) => item.slug === preview.slug);
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((item: string) => (
+                  <SectionPill key={item} label={item} />
+                ))}
+              </div>
 
-      return project ? (
-        <ProjectView projects={[project]} featured />
-      ) : (
-        <EmptyView onRunCommand={onRunCommand} />
-      );
-    }
+              <ul className="space-y-2 text-sm text-foreground/78">
+                {project.highlights.map((highlight: string) => (
+                  <li key={highlight}>• {highlight}</li>
+                ))}
+              </ul>
 
-    case "blog":
-      return <BlogView posts={posts} />;
+              <div className="flex flex-wrap gap-3">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm transition hover:bg-cyan-400/20"
+                  >
+                    Live demo
+                  </a>
+                )}
 
-    case "post": {
-      const post = posts.find((item: BlogPost) => item.slug === preview.slug);
-
-      return post ? (
-        <BlogView posts={[post]} featured />
-      ) : (
-        <EmptyView onRunCommand={onRunCommand} />
-      );
-    }
-
-    case "about":
-      return <PageView title={pages.about.title} body={pages.about.body} />;
-
-    case "setup":
-      return <PageView title={pages.setup.title} body={pages.setup.body} />;
-
-    case "contact":
-      return <PageView title={pages.contact.title} body={pages.contact.body} />;
-
-    case "resume":
-      return <PageView title={pages.resume.title} body={pages.resume.body} />;
-
-    case "not-found":
-      return (
-        <PageView
-          title="Not found"
-          body={`No resource found for: ${preview.value}`}
-        />
-      );
-
-    default:
-      return <EmptyView onRunCommand={onRunCommand} />;
-  }
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-2xl border border-black/8 bg-white/70 px-4 py-2 text-sm transition hover:bg-white dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20"
+                  >
+                    Repository
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
 }

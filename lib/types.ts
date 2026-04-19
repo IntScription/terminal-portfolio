@@ -90,3 +90,15 @@ export type BlogPost = {
   body: string;
   excerpt?: string;
 };
+
+export type Project = {
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  image?: string;
+  stack: string[];
+  highlights: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+};
