@@ -78,7 +78,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
                 ) : null}
               </div>
 
-              {project.stack?.length ? (
+              {project.stack.length ? (
                 <div className="mt-6 flex flex-wrap gap-2">
                   {project.stack.map((item: string) => (
                     <span

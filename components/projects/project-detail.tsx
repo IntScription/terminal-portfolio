@@ -1,20 +1,23 @@
 import Image from "next/image";
-import { Project } from "@/lib/types";
+import { Project } from "@/lib/content/projects";
 
 export function ProjectDetail({ project }: { project: Project }) {
   return (
-    <article className="space-y-10">
-      <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+    <article className="space-y-8">
+      <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <p className="text-xs uppercase tracking-[0.28em] text-foreground/50">
             project case study
           </p>
+
           <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
             {project.title}
           </h1>
+
           <p className="mt-4 max-w-2xl text-lg leading-8 text-foreground/72">
             {project.tagline}
           </p>
+
           <p className="mt-6 max-w-2xl text-sm leading-8 text-foreground/76">
             {project.overview ?? project.description}
           </p>
@@ -81,14 +84,15 @@ export function ProjectDetail({ project }: { project: Project }) {
 
       <section className="rounded-[30px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
         <h2 className="text-2xl font-semibold tracking-tight">Highlights</h2>
+
         <ul className="mt-5 space-y-3 text-sm leading-7 text-foreground/76">
-          {project.highlights.map((highlight) => (
+          {project.highlights.map((highlight: string) => (
             <li key={highlight}>• {highlight}</li>
           ))}
         </ul>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((item) => (
+          {project.stack.map((item: string) => (
             <span
               key={item}
               className="rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1 text-xs text-foreground/70 dark:bg-white/8"

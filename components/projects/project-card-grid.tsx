@@ -43,7 +43,7 @@ export function ProjectCardGrid({
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {project.stack.map((item) => (
+                {project.stack.map((item: string) => (
                   <span
                     key={item}
                     className="rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1 text-xs text-foreground/70 dark:bg-white/8"
