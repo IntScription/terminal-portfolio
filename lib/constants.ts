@@ -20,6 +20,7 @@ export const QUICK_COMMANDS = [
 
 export const PROMPT_USER = "kartik@portfolio";
 export const PROMPT_SYMBOL = "%";
+export const PROMPT = `${PROMPT_USER} ${PROMPT_SYMBOL}`;
 
 export const THEMES: SiteTheme[] = [
   "light",

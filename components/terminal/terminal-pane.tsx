@@ -16,6 +16,13 @@ export function TerminalPane({
   onRunCommandAction: (value: string) => void;
   quickCommands: string[];
 }) {
+  const history = lines.reduce<string[]>((acc, line) => {
+    if (line.kind === "input" && "content" in line) {
+      acc.push(line.content);
+    }
+    return acc;
+  }, []);
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 12 }}
@@ -27,7 +34,9 @@ export function TerminalPane({
         <div className="h-3 w-3 rounded-full bg-red-400/80" />
         <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
         <div className="h-3 w-3 rounded-full bg-green-400/80" />
-        <div className="ml-3 text-xs text-white/60">alacritty — zsh — portfolio</div>
+        <div className="ml-3 text-xs text-white/60">
+          alacritty — zsh — portfolio
+        </div>
       </div>
 
       <div className="flex-1 space-y-4 p-4">
@@ -39,8 +48,10 @@ export function TerminalPane({
           commands={quickCommands}
           onSelect={onRunCommandAction}
         />
+
         <TerminalInput
           prompt={PROMPT}
+          history={history}
           onRunCommandAction={onRunCommandAction}
         />
       </div>
