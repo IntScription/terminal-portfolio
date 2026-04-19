@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   memo,
   useCallback,
@@ -104,12 +105,14 @@ const LogoLoop = memo(function LogoLoop({
 
   const targetVelocity = useMemo(() => {
     const magnitude = Math.abs(speed);
-    let directionMultiplier;
+    let directionMultiplier: number;
+
     if (isVertical) {
       directionMultiplier = direction === "up" ? 1 : -1;
     } else {
       directionMultiplier = direction === "left" ? 1 : -1;
     }
+
     const speedMultiplier = speed < 0 ? -1 : 1;
     return magnitude * directionMultiplier * speedMultiplier;
   }, [speed, direction, isVertical]);
@@ -248,16 +251,14 @@ const LogoLoop = memo(function LogoLoop({
           {item.node}
         </span>
       ) : (
-        <img
+        <Image
           src={item.src}
-          srcSet={item.srcSet}
-          sizes={item.sizes}
-          width={item.width}
-          height={item.height}
           alt={item.alt ?? ""}
           title={item.title}
-          loading="lazy"
-          decoding="async"
+          width={item.width ?? 120}
+          height={item.height ?? logoHeight}
+          sizes={item.sizes ?? "(max-width: 768px) 120px, 160px"}
+          className="logoloop__image"
           draggable={false}
         />
       );
@@ -287,7 +288,7 @@ const LogoLoop = memo(function LogoLoop({
         </li>
       );
     },
-    [renderItem]
+    [renderItem, logoHeight]
   );
 
   const logoLists = useMemo(
@@ -347,7 +348,6 @@ const LogoLoop = memo(function LogoLoop({
       <style jsx global>{`
         .logoloop {
           position: relative;
-
           --logoloop-gap: 32px;
           --logoloop-logoHeight: 28px;
           --logoloop-fadeColorAuto: #ffffff;
@@ -421,7 +421,7 @@ const LogoLoop = memo(function LogoLoop({
           align-items: center;
         }
 
-        .logoloop__item img {
+        .logoloop__image {
           height: var(--logoloop-logoHeight);
           width: auto;
           display: block;
@@ -436,7 +436,7 @@ const LogoLoop = memo(function LogoLoop({
           overflow: visible;
         }
 
-        .logoloop--scale-hover .logoloop__item:hover img,
+        .logoloop--scale-hover .logoloop__item:hover .logoloop__image,
         .logoloop--scale-hover .logoloop__item:hover .logoloop__node {
           transform: scale(1.2);
           transform-origin: center center;
@@ -547,7 +547,7 @@ const LogoLoop = memo(function LogoLoop({
             transform: translate3d(0, 0, 0) !important;
           }
 
-          .logoloop__item img,
+          .logoloop__image,
           .logoloop__node {
             transition: none !important;
           }
