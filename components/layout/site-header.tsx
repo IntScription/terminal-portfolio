@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import MagicRings from "@/components/reactbits/magic-rings";
 import GooeyNav from "@/components/reactbits/gooey-nav";
 import GradientText from "@/components/reactbits/gradient-text";
@@ -20,15 +21,21 @@ const gooeyItems = [
 export function SiteHeader() {
   const router = useRouter();
   const [showIntro, setShowIntro] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleBrandClick = (event: React.MouseEvent) => {
+  const handleBrandClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+    setMobileMenuOpen(false);
     setShowIntro(true);
 
     window.setTimeout(() => {
       setShowIntro(false);
       router.push("/");
     }, 3200);
+  };
+
+  const handleMobileLinkClick = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -58,11 +65,45 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex rounded-2xl border border-[rgba(var(--border))] bg-white/65 px-3 py-2 text-sm text-foreground/72 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12 md:hidden"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-site-menu"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="inline-flex items-center justify-center rounded-2xl border border-[rgba(var(--border))] bg-white/65 p-2 text-foreground/72 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12 md:hidden"
           >
-            Menu
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
+
+        <AnimatePresence>
+          {mobileMenuOpen ? (
+            <motion.div
+              id="mobile-site-menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="border-t border-[rgba(var(--border))] bg-[rgb(var(--background))]/95 px-4 py-4 backdrop-blur-xl md:hidden"
+            >
+              <nav className="flex flex-col gap-2">
+                {gooeyItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={handleMobileLinkClick}
+                    className="rounded-2xl border border-[rgba(var(--border))] bg-white/60 px-4 py-3 text-sm font-medium text-foreground/80 transition hover:bg-white dark:bg-white/6 dark:hover:bg-white/10"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </header>
 
       <AnimatePresence>
@@ -71,7 +112,7 @@ export function SiteHeader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-90 flex items-center justify-center overflow-hidden bg-black/68 backdrop-blur-2xl"
+            className="fixed inset-0 z-[90] flex items-center justify-center overflow-hidden bg-black/68 backdrop-blur-2xl"
           >
             <div className="absolute inset-0 opacity-55 blur-[2px]">
               <MagicRings
