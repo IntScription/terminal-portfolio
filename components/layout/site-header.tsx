@@ -2,9 +2,16 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  PanInfo,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 import { useEffect, useState } from "react";
-import { Check, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import { Check, ChevronDown, Command, Menu, Moon, Sun, X } from "lucide-react";
 import MagicRings from "@/components/reactbits/magic-rings";
 import GooeyNav from "@/components/reactbits/gooey-nav";
 import GradientText from "@/components/reactbits/gradient-text";
@@ -38,6 +45,13 @@ function applyTheme(theme: Theme) {
   localStorage.setItem("theme", theme);
 }
 
+function formatThemeLabel(theme: Theme) {
+  return theme
+    .split("-")
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
 function ThemeMenu({
   theme,
   setTheme,
@@ -49,50 +63,71 @@ function ThemeMenu({
 }) {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [open]);
+
   return (
     <div className="relative">
       <button
         type="button"
-        onClick={() => setOpen((p) => !p)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((prev) => !prev)}
         className={
           mobile
-            ? "flex w-full items-center justify-between rounded-2xl border border-[rgba(var(--border))] bg-white/60 px-4 py-3 text-sm text-foreground/80 dark:bg-white/6"
-            : "flex items-center gap-2 rounded-2xl border border-[rgba(var(--border))] bg-white/65 px-3 py-2 text-sm text-foreground/75 dark:bg-white/8"
+            ? "flex w-full items-center justify-between rounded-2xl border border-[rgba(var(--border))] bg-white/60 px-4 py-3 text-sm text-foreground/80 transition hover:bg-white dark:bg-white/6 dark:hover:bg-white/10"
+            : "inline-flex items-center gap-2 rounded-2xl border border-[rgba(var(--border))] bg-white/65 px-3 py-2 text-sm text-foreground/75 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12"
         }
       >
         <span className="inline-flex items-center gap-2">
           {theme === "light" ? <Sun size={16} /> : <Moon size={16} />}
-          <span className="capitalize">{theme.replace("-", " ")}</span>
+          <span>{mobile ? "Theme" : formatThemeLabel(theme)}</span>
         </span>
-        <ChevronDown size={16} />
+        <ChevronDown
+          size={16}
+          className={`transition ${open ? "rotate-180" : ""}`}
+        />
       </button>
 
       <AnimatePresence>
-        {open && (
+        {open ? (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            className={`${mobile ? "mt-2 w-full" : "absolute right-0 mt-2 w-56"
-              } z-20 rounded-2xl border border-[rgba(var(--border))] bg-background p-2 shadow-xl`}
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+            className={`${mobile ? "mt-2 w-full" : "absolute right-0 top-[calc(100%+8px)] w-56"
+              } z-20 overflow-hidden rounded-2xl border border-[rgba(var(--border))] bg-background p-2 shadow-xl`}
           >
-            {themeOptions.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => {
-                  setTheme(t);
-                  applyTheme(t);
-                  setOpen(false);
-                }}
-                className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-foreground/80 transition hover:bg-white/70 dark:hover:bg-white/8"
-              >
-                <span className="capitalize">{t.replace("-", " ")}</span>
-                {t === theme ? <Check size={14} /> : null}
-              </button>
-            ))}
+            {themeOptions.map((option) => {
+              const active = option === theme;
+
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    setTheme(option);
+                    applyTheme(option);
+                    setOpen(false);
+                  }}
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-foreground/80 transition hover:bg-white/70 dark:hover:bg-white/8"
+                >
+                  <span>{formatThemeLabel(option)}</span>
+                  {active ? <Check size={14} /> : null}
+                </button>
+              );
+            })}
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   );
@@ -105,6 +140,14 @@ export function SiteHeader() {
   const [showIntro, setShowIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>("tokyonight");
+
+  const drawerX = useMotionValue(0);
+  const backdropOpacity = useTransform(drawerX, [0, 320], [0.45, 0]);
+  const drawerShadow = useTransform(
+    drawerX,
+    [0, 320],
+    ["-24px 0 60px rgba(0,0,0,0.18)", "0px 0 0px rgba(0,0,0,0)"]
+  );
 
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
@@ -128,19 +171,19 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   useEffect(() => {
-    const esc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
         setMobileOpen(false);
         setShowIntro(false);
       }
     };
 
-    window.addEventListener("keydown", esc);
-    return () => window.removeEventListener("keydown", esc);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const handleBrandClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
     setMobileOpen(false);
     setShowIntro(true);
 
@@ -153,16 +196,32 @@ export function SiteHeader() {
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
 
+  const openDrawer = () => {
+    drawerX.set(0);
+    setMobileOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setMobileOpen(false);
+  };
+
   const handleDrawerDragEnd = (
     _event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    const draggedFarEnough = info.offset.x > 110;
-    const flungFastEnough = info.velocity.x > 700;
+    const shouldClose = info.offset.x > 110 || info.velocity.x > 700;
 
-    if (draggedFarEnough || flungFastEnough) {
-      setMobileOpen(false);
+    if (shouldClose) {
+      closeDrawer();
+      return;
     }
+
+    animate(drawerX, 0, {
+      type: "spring",
+      stiffness: 420,
+      damping: 38,
+      mass: 0.7,
+    });
   };
 
   return (
@@ -172,25 +231,31 @@ export function SiteHeader() {
           <Link
             href="/"
             onClick={handleBrandClick}
-            className="flex items-center gap-2 text-sm font-semibold tracking-[0.22em] text-foreground/78"
+            className="group flex items-center gap-2 text-sm font-semibold tracking-[0.22em] text-foreground/78"
           >
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="h-2 w-2 rounded-full bg-emerald-400 transition group-hover:scale-110" />
             <span>KARTIK</span>
           </Link>
 
           <div className="hidden md:block">
-            <GooeyNav items={[...gooeyItems]} />
+            <div className="relative h-14 w-136">
+              <GooeyNav items={[...gooeyItems]} />
+            </div>
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
             <ThemeMenu theme={theme} setTheme={setTheme} />
 
-            <div className="hidden items-center gap-2 rounded-2xl border border-[rgba(var(--border))] bg-white/65 px-3 py-2 text-sm text-foreground/72 dark:bg-white/8 xl:flex">
-              <span className="text-foreground/55">Command</span>
+            <button
+              type="button"
+              aria-label="Command palette shortcut"
+              className="inline-flex items-center gap-2 rounded-2xl border border-[rgba(var(--border))] bg-white/65 px-3 py-2 text-sm text-foreground/72 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12"
+            >
+              <Command className="h-4 w-4" />
               <span className="rounded-md border border-[rgba(var(--border))] px-2 py-0.5 text-xs">
                 K
               </span>
-            </div>
+            </button>
           </div>
 
           <button
@@ -198,7 +263,7 @@ export function SiteHeader() {
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-site-drawer"
-            onClick={() => setMobileOpen((p) => !p)}
+            onClick={() => (mobileOpen ? closeDrawer() : openDrawer())}
             className="inline-flex items-center justify-center rounded-2xl border border-[rgba(var(--border))] bg-white/65 p-2 text-foreground/72 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12 md:hidden"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -207,7 +272,7 @@ export function SiteHeader() {
       </header>
 
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileOpen ? (
           <>
             <motion.button
               type="button"
@@ -215,8 +280,9 @@ export function SiteHeader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              style={{ opacity: backdropOpacity }}
               transition={{ duration: 0.2 }}
-              onClick={() => setMobileOpen(false)}
+              onClick={closeDrawer}
               className="fixed inset-0 z-70 bg-black/45 backdrop-blur-sm md:hidden"
             />
 
@@ -225,14 +291,15 @@ export function SiteHeader() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+              transition={{ type: "spring", stiffness: 360, damping: 34, mass: 0.72 }}
               drag="x"
               dragDirectionLock
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={{ left: 0, right: 0.12 }}
-              dragMomentum={false}
+              dragConstraints={{ left: 0, right: 320 }}
+              dragElastic={0.06}
+              dragMomentum
               onDragEnd={handleDrawerDragEnd}
-              className="fixed right-0 top-0 z-80 flex h-dvh w-[86vw] max-w-sm flex-col border-l border-[rgba(var(--border))] bg-background/96 shadow-2xl backdrop-blur-2xl md:hidden"
+              style={{ x: drawerX, boxShadow: drawerShadow }}
+              className="fixed right-0 top-0 z-80 flex h-dvh w-[86vw] max-w-sm flex-col border-l border-[rgba(var(--border))] bg-background/96 backdrop-blur-2xl md:hidden"
               aria-label="Mobile navigation"
             >
               <div className="flex items-center justify-between border-b border-[rgba(var(--border))] px-5 py-4">
@@ -248,7 +315,7 @@ export function SiteHeader() {
                 <button
                   type="button"
                   aria-label="Close menu"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={closeDrawer}
                   className="inline-flex items-center justify-center rounded-2xl border border-[rgba(var(--border))] bg-white/65 p-2 text-foreground/72 transition hover:bg-white dark:bg-white/8 dark:hover:bg-white/12"
                 >
                   <X className="h-5 w-5" />
@@ -292,15 +359,19 @@ export function SiteHeader() {
               </div>
 
               <div className="px-5 pb-4">
-                <div className="mx-auto mt-1 h-1.5 w-12 rounded-full bg-foreground/15" />
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0.8 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  className="mx-auto mt-1 h-1.5 w-12 rounded-full bg-foreground/15"
+                />
               </div>
             </motion.aside>
           </>
-        )}
+        ) : null}
       </AnimatePresence>
 
       <AnimatePresence>
-        {showIntro && (
+        {showIntro ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -348,7 +419,7 @@ export function SiteHeader() {
               </p>
             </motion.div>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </>
   );
