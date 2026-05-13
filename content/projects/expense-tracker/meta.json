@@ -1,0 +1,23 @@
+{
+  "title": "Expense Tracker",
+  "slug": "expense-tracker",
+  "tagline": "Responsive React expense tracker with categories, persistence, and currency conversion.",
+  "description": "A responsive React and Vite expense tracker that lets users add, view, delete, categorize, and analyze expenses. It includes live total calculations, category-based breakdowns, localStorage persistence, input validation, error handling, and real-time currency conversion using the Frankfurter API.",
+  "stack": [
+    "React",
+    "Vite",
+    "JavaScript",
+    "CSS",
+    "Frankfurter API",
+    "localStorage",
+    "Vercel"
+  ],
+  "liveUrl": "https://expense-tracker-two-weld-69.vercel.app/",
+  "repoUrl": "https://github.com/IntScription/expense-tracker",
+  "appStoreUrl": "",
+  "playStoreUrl": "",
+  "image": "/screenshots/expense-tracker.png",
+  "featured": false,
+  "published": true,
+  "order": 10
+}
