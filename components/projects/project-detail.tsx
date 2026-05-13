@@ -1,5 +1,57 @@
 import Image from "next/image";
+import type { IconType } from "react-icons";
+import {
+  SiCss,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiMarkdown,
+  SiNextdotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiRuby,
+  SiSass,
+  SiStripe,
+  SiSupabase,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+  SiVite,
+} from "react-icons/si";
+import { FaCode, FaDatabase, FaGem, FaLock } from "react-icons/fa";
 import { Project } from "@/lib/content/projects";
+
+const stackIcons: Record<string, IconType> = {
+  // Devlog
+  Jekyll: FaGem,
+  Markdown: SiMarkdown,
+  HTML: SiHtml5,
+  SCSS: SiSass,
+  CSS: SiCss,
+  JavaScript: SiJavascript,
+  Python: SiPython,
+  Ruby: SiRuby,
+  "GitHub Pages": SiGithub,
+
+  // Web / frontend
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  "Tailwind CSS": SiTailwindcss,
+  Vite: SiVite,
+
+  // Backend / platform
+  Supabase: SiSupabase,
+  PostgreSQL: SiPostgresql,
+  Stripe: SiStripe,
+  Vercel: SiVercel,
+
+  // Other project stack labels
+  RLS: FaLock,
+  localStorage: FaDatabase,
+  "Frankfurter API": FaCode,
+};
 
 export function ProjectDetail({ project }: { project: Project }) {
   return (
@@ -14,9 +66,11 @@ export function ProjectDetail({ project }: { project: Project }) {
             {project.title}
           </h1>
 
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-foreground/72">
-            {project.tagline}
-          </p>
+          {project.tagline ? (
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-foreground/72">
+              {project.tagline}
+            </p>
+          ) : null}
 
           <p className="mt-6 max-w-2xl text-sm leading-8 text-foreground/76">
             {project.overview ?? project.description}
@@ -48,12 +102,13 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
 
         {project.image ? (
-          <div className="relative min-h-[360px] overflow-hidden rounded-[30px] border border-[rgba(var(--border))] bg-white/40 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+          <div className="relative min-h-90 overflow-hidden rounded-[30px] border border-[rgba(var(--border))] bg-white/40 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
             <Image
               src={project.image}
               alt={project.title}
               fill
               className="object-cover"
+              priority
             />
           </div>
         ) : null}
@@ -63,7 +118,8 @@ export function ProjectDetail({ project }: { project: Project }) {
         <div className="rounded-[28px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
           <h2 className="text-lg font-semibold">Challenge</h2>
           <p className="mt-3 text-sm leading-7 text-foreground/75">
-            {project.challenge ?? "Explain the main product or engineering problem here."}
+            {project.challenge ??
+              "Explain the main product or engineering problem here."}
           </p>
         </div>
 
@@ -77,7 +133,8 @@ export function ProjectDetail({ project }: { project: Project }) {
         <div className="rounded-[28px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
           <h2 className="text-lg font-semibold">Outcome</h2>
           <p className="mt-3 text-sm leading-7 text-foreground/75">
-            {project.outcome ?? "Explain what the result was and what it demonstrates."}
+            {project.outcome ??
+              "Explain what the result was and what it demonstrates."}
           </p>
         </div>
       </section>
@@ -91,16 +148,29 @@ export function ProjectDetail({ project }: { project: Project }) {
           ))}
         </ul>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((item: string) => (
-            <span
-              key={item}
-              className="rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1 text-xs text-foreground/70 dark:bg-white/8"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
+        {project.stack.length ? (
+          <div className="mt-8">
+            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-foreground/45">
+              Tech stack
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((item: string) => {
+                const Icon = stackIcons[item] ?? FaCode;
+
+                return (
+                  <span
+                    key={item}
+                    className="group inline-flex items-center gap-2 rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1.5 text-xs text-foreground/75 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-foreground hover:text-background dark:bg-white/8 dark:hover:bg-white"
+                  >
+                    <Icon className="text-sm transition duration-200 group-hover:scale-110" />
+                    {item}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
       </section>
     </article>
   );
