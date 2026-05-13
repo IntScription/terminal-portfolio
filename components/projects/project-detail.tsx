@@ -2,11 +2,18 @@ import Image from "next/image";
 import type { IconType } from "react-icons";
 import {
   SiCss,
+  SiDocker,
+  SiExpo,
+  SiFramer,
   SiGithub,
+  SiGithubactions,
   SiHtml5,
   SiJavascript,
+  SiKubernetes,
   SiMarkdown,
+  SiMdx,
   SiNextdotjs,
+  SiOpenai,
   SiPostgresql,
   SiPython,
   SiReact,
@@ -19,8 +26,15 @@ import {
   SiVercel,
   SiVite,
 } from "react-icons/si";
-import { FaCode, FaDatabase, FaGem, FaLock } from "react-icons/fa";
-import { Project } from "@/lib/content/projects";
+import {
+  FaCode,
+  FaDatabase,
+  FaGem,
+  FaIcons,
+  FaLock,
+  FaRobot,
+} from "react-icons/fa";
+import type { Project } from "@/lib/content/projects";
 
 const stackIcons: Record<string, IconType> = {
   // Devlog
@@ -40,6 +54,12 @@ const stackIcons: Record<string, IconType> = {
   TypeScript: SiTypescript,
   "Tailwind CSS": SiTailwindcss,
   Vite: SiVite,
+  MDX: SiMdx,
+  Motion: SiFramer,
+
+  // Mobile
+  "React Native": SiReact,
+  Expo: SiExpo,
 
   // Backend / platform
   Supabase: SiSupabase,
@@ -47,11 +67,27 @@ const stackIcons: Record<string, IconType> = {
   Stripe: SiStripe,
   Vercel: SiVercel,
 
+  // DevOps
+  Docker: SiDocker,
+  "GitHub Actions": SiGithubactions,
+  Kubernetes: SiKubernetes,
+  Minikube: SiKubernetes,
+
+  // AI / extras
+  OpenAI: SiOpenai,
+  OpenRouter: FaRobot,
+  "React Icons": FaIcons,
+  OGL: FaCode,
+
   // Other project stack labels
   RLS: FaLock,
   localStorage: FaDatabase,
   "Frankfurter API": FaCode,
 };
+
+function getStackIcon(item: string) {
+  return stackIcons[item] ?? FaCode;
+}
 
 export function ProjectDetail({ project }: { project: Project }) {
   return (
@@ -114,6 +150,30 @@ export function ProjectDetail({ project }: { project: Project }) {
         ) : null}
       </section>
 
+      {project.stack.length ? (
+        <section className="rounded-[30px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
+          <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
+            Tech stack
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.stack.map((item: string) => {
+              const Icon = getStackIcon(item);
+
+              return (
+                <span
+                  key={item}
+                  className="group inline-flex items-center gap-2 rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1.5 text-xs text-foreground/75 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-foreground hover:text-background dark:bg-white/8 dark:hover:bg-white"
+                >
+                  <Icon className="text-sm transition duration-200 group-hover:scale-110" />
+                  {item}
+                </span>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
+
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="rounded-[28px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
           <h2 className="text-lg font-semibold">Challenge</h2>
@@ -142,35 +202,17 @@ export function ProjectDetail({ project }: { project: Project }) {
       <section className="rounded-[30px] border border-[rgba(var(--border))] bg-white/45 p-6 dark:bg-white/5">
         <h2 className="text-2xl font-semibold tracking-tight">Highlights</h2>
 
-        <ul className="mt-5 space-y-3 text-sm leading-7 text-foreground/76">
-          {project.highlights.map((highlight: string) => (
-            <li key={highlight}>• {highlight}</li>
-          ))}
-        </ul>
-
-        {project.stack.length ? (
-          <div className="mt-8">
-            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-foreground/45">
-              Tech stack
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((item: string) => {
-                const Icon = stackIcons[item] ?? FaCode;
-
-                return (
-                  <span
-                    key={item}
-                    className="group inline-flex items-center gap-2 rounded-full border border-[rgba(var(--border))] bg-white/70 px-3 py-1.5 text-xs text-foreground/75 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-foreground hover:text-background dark:bg-white/8 dark:hover:bg-white"
-                  >
-                    <Icon className="text-sm transition duration-200 group-hover:scale-110" />
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        ) : null}
+        {project.highlights.length ? (
+          <ul className="mt-5 space-y-3 text-sm leading-7 text-foreground/76">
+            {project.highlights.map((highlight: string) => (
+              <li key={highlight}>• {highlight}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-3 text-sm leading-7 text-foreground/70">
+            Add project highlights in this project&apos;s meta.json.
+          </p>
+        )}
       </section>
     </article>
   );
