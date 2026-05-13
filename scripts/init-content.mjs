@@ -32,6 +32,8 @@ const files = {
     stack: [],
     liveUrl: "",
     repoUrl: "",
+    appStoreUrl: "",
+    playStoreUrl: "",
     image: "",
     featured: false,
     published: true,
