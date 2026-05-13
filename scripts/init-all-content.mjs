@@ -234,7 +234,7 @@ This is the starting point for long-form writing on development, systems, produc
         repoUrl: "",
         appStoreUrl: "",
         playStoreUrl: "",
-        image: "/projects/starter-project.png",
+        image: "/screenshots/starter-project.png",
         featured: false,
         published: true,
         order: 99,

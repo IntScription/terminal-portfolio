@@ -35,7 +35,7 @@ const meta = {
   repoUrl: "",
   appStoreUrl: "",
   playStoreUrl: "",
-  image: `/projects/${slug}.png`,
+  image: `/screenshots/${slug}.png`,
   featured: false,
   published: true,
   order: 10,
