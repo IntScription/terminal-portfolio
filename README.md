@@ -20,14 +20,28 @@ This project is designed to feel like stepping into a personal workflow rather t
 
 ## Tech Stack
 
-- **Framework:** Next.js
-- **UI:** React, TypeScript, Tailwind CSS
-- **Content:** MDX
-- **Animation:** Framer Motion / Motion
-- **Deployment:** Vercel
-- **AI Providers:** OpenRouter, OpenAI
-- **Icons:** React Icons
-- **Visual Effects:** OGL
+Terminal-inspired portfolio built with modern frontend tooling, MDX content, AI integrations, motion, and WebGL-style visual effects.
+
+<p align="center">
+  <img
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2600&pause=900&color=38BDF8&center=true&vCenter=true&width=850&lines=%3E+booting+terminal+portfolio...;%3E+loading+interactive+project+showcase...;%3E+rendering+MDX+content+%2B+motion+%2B+visual+effects..."
+    alt="Terminal portfolio animated intro"
+  />
+</p>
+
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-111827?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" /></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-111827?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-111827?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="TypeScript" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-111827?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="Tailwind CSS" /></a>
+  <a href="https://mdxjs.com/"><img src="https://img.shields.io/badge/MDX-111827?style=for-the-badge&logo=mdx&logoColor=white" alt="MDX" /></a>
+  <a href="https://motion.dev/"><img src="https://img.shields.io/badge/Motion-111827?style=for-the-badge&logo=framer&logoColor=0055FF" alt="Motion" /></a>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-111827?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
+  <a href="https://openrouter.ai/"><img src="https://img.shields.io/badge/OpenRouter-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenRouter" /></a>
+  <a href="https://openai.com/"><img src="https://img.shields.io/badge/OpenAI-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI" /></a>
+  <a href="https://react-icons.github.io/react-icons/"><img src="https://img.shields.io/badge/React_Icons-111827?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Icons" /></a>
+  <a href="https://github.com/oframe/ogl"><img src="https://img.shields.io/badge/OGL-111827?style=for-the-badge&logo=opengl&logoColor=white" alt="OGL" /></a>
+</p>
 
 ## Project Structure
 
