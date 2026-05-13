@@ -1,0 +1,23 @@
+{
+  "title": "Golf Charity Platform",
+  "slug": "golf-charity-platform",
+  "tagline": "Full-stack golf charity SaaS with subscriptions, score tracking, and monthly draws.",
+  "description": "A full-stack SaaS-style platform built with Next.js, Supabase, Stripe, and Vercel. It includes user authentication, subscription gating, golf score tracking, monthly charity draw logic, admin workflows, winner proof uploads, and payout tracking.",
+  "stack": [
+    "Next.js",
+    "TypeScript",
+    "Supabase",
+    "PostgreSQL",
+    "Stripe",
+    "Vercel",
+    "RLS"
+  ],
+  "liveUrl": "https://golf-charity-platform-woad-gamma.vercel.app/",
+  "repoUrl": "https://github.com/IntScription/golf-charity-platform",
+  "appStoreUrl": "",
+  "playStoreUrl": "",
+  "image": "/projects/golf-charity-platform.png",
+  "featured": true,
+  "published": true,
+  "order": 2
+}

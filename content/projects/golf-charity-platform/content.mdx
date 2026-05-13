@@ -1,0 +1,24 @@
+## Overview
+
+A full-stack golf charity SaaS platform where users subscribe, track scores, enter monthly reward draws, support charities, and upload winner proof. Built with Next.js, TypeScript, Supabase, Stripe, and Vercel.
+
+## Challenge
+
+The goal was to build a realistic product instead of a basic CRUD app, including auth, roles, subscription gating, secure database access, payment webhooks, admin workflows, score logic, and winner verification.
+
+## Solution
+
+I used Next.js App Router, Supabase Auth, PostgreSQL RLS, Supabase Storage, Stripe Checkout, and Server Actions. Stripe webhooks keep subscription status synced, while the admin dashboard controls monthly draws, winner review, and payout tracking.
+
+## Outcome
+
+A deployed SaaS-style platform that demonstrates payments, webhooks, secure database design, role-based access, product logic, admin tooling, and production deployment.
+
+## Highlights
+
+- Next.js + TypeScript full-stack app
+- Supabase Auth, PostgreSQL, RLS, and Storage
+- Stripe Checkout and webhook-based subscription sync
+- Latest-five-score golf tracking engine
+- Monthly draw system with jackpot-style match tiers
+- Admin dashboard for draws, winner claims, and payouts
