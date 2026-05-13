@@ -1,0 +1,24 @@
+{
+  "title": "Devlog",
+  "slug": "devlog",
+  "tagline": "Public developer journal for daily learning, notes, and project progress.",
+  "description": "A Jekyll-powered developer log hosted on GitHub Pages. It documents daily progress, learning, and software engineering experiments with markdown entries, archive browsing, dark/light mode, syntax highlighting, responsive design, and Python automation scripts for maintaining clean notes.",
+  "stack": [
+    "Jekyll",
+    "Markdown",
+    "HTML",
+    "SCSS",
+    "JavaScript",
+    "Python",
+    "Ruby",
+    "GitHub Pages"
+  ],
+  "liveUrl": "https://intscription.github.io/devlog/",
+  "repoUrl": "https://github.com/IntScription/devlog",
+  "appStoreUrl": "",
+  "playStoreUrl": "",
+  "image": "/screenshots/devlog.png",
+  "featured": false,
+  "published": true,
+  "order": 10
+}
