@@ -13,7 +13,11 @@
     "new:blog": "node scripts/new-blog.mjs && npm run generate:manifest",
     "new:project": "node scripts/new-project.mjs",
     "generate:manifest": "node scripts/generate-content-manifest.mjs",
-    "new:project:full": "node scripts/new-project.mjs && npm run generate:manifest"
+    "new:project:full": "node scripts/new-project.mjs && npm run generate:manifest",
+    "typecheck": "tsc --noEmit",
+    "doctor": "node scripts/doctor.mjs",
+    "validate:content": "node scripts/validate-content.mjs",
+    "check": "npm run lint -- --max-warnings=0 && npm run typecheck && npm run validate:content && npm run build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

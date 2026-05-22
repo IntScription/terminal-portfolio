@@ -1,11 +1,34 @@
+<div align="center">
+
 # Terminal Portfolio
 
-A terminal-inspired portfolio built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
-It blends a terminal-first landing experience with clean editorial project pages, MDX-powered writing, and an AI assistant backed by hosted LLM providers.
+**A terminal-inspired portfolio built with Next.js, TypeScript, Tailwind CSS, MDX, motion, and AI-assisted project exploration.**
+
+<p>
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-111827?style=for-the-badge&logo=nextdotjs&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-18-111827?style=for-the-badge&logo=react&logoColor=61DAFB">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-111827?style=for-the-badge&logo=typescript&logoColor=3178C6">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-111827?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8">
+  <img alt="MDX" src="https://img.shields.io/badge/MDX-content-111827?style=for-the-badge&logo=mdx&logoColor=white">
+  <img alt="Vercel" src="https://img.shields.io/badge/Deploy-Vercel-111827?style=for-the-badge&logo=vercel&logoColor=white">
+  <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/IntScription/terminal-portfolio/ci.yml?branch=main&style=for-the-badge&label=CI">
+</p>
+
+<p>
+  <a href="https://terminal-portfolio-eight-theta.vercel.app">Live Site</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#getting-started">Getting Started</a> ·
+  <a href="#content-workflow">Content</a> ·
+  <a href="#developer-workflow">Developer Workflow</a>
+</p>
+
+</div>
 
 ## Overview
 
-This project is designed to feel like stepping into a personal workflow rather than browsing a standard portfolio. It combines command-line inspired interaction, structured long-form case studies, themed visuals, and responsive layouts across desktop and mobile.
+Terminal Portfolio is a personal developer portfolio that blends a terminal-first landing experience with clean editorial project pages, MDX-powered writing, responsive layouts, animated visuals, and an AI assistant backed by hosted LLM providers.
+
+The goal is to feel less like a generic portfolio and more like stepping into a real developer workflow: projects, tools, notes, case studies, writing, and experiments all organized in one polished interface.
 
 ## Features
 
@@ -16,83 +39,50 @@ This project is designed to feel like stepping into a personal workflow rather t
 - Dedicated **About**, **Now**, and **Uses** pages
 - AI assistant page with hosted model support
 - Responsive design for desktop, tablet, and mobile
-- Motion, particles, and polished interaction details
+- Motion, particles, and WebGL-style visual details
+- JSON + MDX content workflow for projects and blog posts
+- Content validation, doctor checks, CI, and build checks
 
 ## Tech Stack
 
-Terminal-inspired portfolio built with modern frontend tooling, MDX content, AI integrations, motion, and WebGL-style visual effects.
-
-<p align="center">
-  <img
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2600&pause=900&color=38BDF8&center=true&vCenter=true&width=850&lines=%3E+booting+terminal+portfolio...;%3E+loading+interactive+project+showcase...;%3E+rendering+MDX+content+%2B+motion+%2B+visual+effects..."
-    alt="Terminal portfolio animated intro"
-  />
-</p>
-
-<p align="center">
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-111827?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" /></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-111827?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-111827?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="TypeScript" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-111827?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="Tailwind CSS" /></a>
-  <a href="https://mdxjs.com/"><img src="https://img.shields.io/badge/MDX-111827?style=for-the-badge&logo=mdx&logoColor=white" alt="MDX" /></a>
-  <a href="https://motion.dev/"><img src="https://img.shields.io/badge/Motion-111827?style=for-the-badge&logo=framer&logoColor=0055FF" alt="Motion" /></a>
-  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Vercel-111827?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
-  <a href="https://openrouter.ai/"><img src="https://img.shields.io/badge/OpenRouter-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenRouter" /></a>
-  <a href="https://openai.com/"><img src="https://img.shields.io/badge/OpenAI-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI" /></a>
-  <a href="https://react-icons.github.io/react-icons/"><img src="https://img.shields.io/badge/React_Icons-111827?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Icons" /></a>
-  <a href="https://github.com/oframe/ogl"><img src="https://img.shields.io/badge/OGL-111827?style=for-the-badge&logo=opengl&logoColor=white" alt="OGL" /></a>
-</p>
+| Area | Tools |
+|---|---|
+| Framework | Next.js App Router |
+| UI | React, TypeScript, Tailwind CSS |
+| Content | MDX, JSON metadata, content manifest |
+| Animation | Motion / Framer Motion |
+| Visuals | OGL, Three.js, React Force Graph |
+| AI | OpenRouter, OpenAI, optional local LLM endpoint |
+| Deployment | Vercel |
+| Quality | ESLint, TypeScript, content validation, GitHub Actions |
 
 ## Project Structure
 
 ```text
 .
-├── app/                      # Next.js App Router pages and API routes
-│   ├── api/                  # API endpoints (chat, assistant, etc.)
+├── app/                      # Next.js App Router pages, API routes, SEO routes
+│   ├── api/                  # API endpoints
 │   ├── projects/             # Project listing and dynamic project pages
 │   ├── blog/                 # Blog listing and dynamic blog pages
 │   ├── about/                # About page
 │   ├── now/                  # Now page
 │   ├── uses/                 # Uses / setup page
-│   └── layout.tsx            # Root layout
-
+│   ├── robots.ts             # Robots route
+│   └── sitemap.ts            # Sitemap route
 ├── components/               # Reusable UI and feature components
-│   ├── ui/                   # Buttons, cards, links, and primitives
-│   ├── layout/               # Header, footer, navigation, shell
-│   ├── home/                 # Homepage sections
-│   ├── blog/                 # Blog-specific components
-│   ├── projects/             # Project-specific components
-│   └── reactbits/            # Animated visual components
-
-├── content/                  # Structured content (MDX + JSON)
-│   ├── blog/                 # Blog post content
-│   │   └── <slug>/
-│   │       ├── meta.json
-│   │       └── content.mdx
-│   ├── projects/             # Project case studies
-│   │   └── <slug>/
-│   │       ├── meta.json
-│   │       └── content.mdx
-│   └── site/                 # Site-level content (about, now, uses, profile)
-
-├── lib/                      # Core logic and helpers
-│   ├── ai/                   # AI routing, prompts, and context
-│   ├── content/              # Content loaders and MDX parsing
-│   └── utils/                # Shared utilities
-
+├── content/                  # Structured content
+│   ├── blog/<slug>/          # Blog meta.json + content.mdx
+│   ├── projects/<slug>/      # Project meta.json + content.mdx
+│   └── site/                 # Site-level content
+├── docs/                     # Repo documentation
+├── lib/                      # Core helpers, AI utilities, content loaders
 ├── public/                   # Static assets
-│   ├── screenshots/          # Project screenshots
-│   └── icons/                # Icons, favicons, and misc assets
-
-├── scripts/                  # Developer scripts
-│   ├── new-project.mjs       # Scaffold a new project entry
-│   ├── new-blog.mjs          # Scaffold a new blog entry
-│   └── generate-content.mjs  # Generate or refresh content manifest
-
-├── styles/                   # Global styles (if separated)
-├── .env.local                # Local environment variables
-├── next.config.ts
-├── tailwind.config.ts
+│   └── screenshots/          # Project screenshots
+├── scripts/                  # Developer/content scripts
+├── .github/workflows/        # GitHub Actions CI
+├── .env.example              # Environment template
+├── Makefile                  # Shortcut commands
+├── next.config.mjs
 ├── tsconfig.json
 └── package.json
 ```
@@ -105,31 +95,38 @@ Terminal-inspired portfolio built with modern frontend tooling, MDX content, AI 
 npm install
 ```
 
+### Set up environment variables
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill the providers you want to use.
+
 ### Start the development server
 
 ```bash
 npm run dev
 ```
 
-### Open in your browser
+Open:
 
-`http://localhost:3000`
+```txt
+http://localhost:3000
+```
 
 ## Environment Variables
 
-- Create a .env.local file in the project root:
+```env
+NEXT_PUBLIC_SITE_URL=https://terminal-portfolio-eight-theta.vercel.app
 
-```.env
-# Primary provider
 AI_PROVIDER=openrouter
-OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_API_KEY=
 OPENROUTER_MODEL=deepseek/deepseek-chat
 
-# Optional fallback provider
-OPENAI_API_KEY=your_openai_api_key
+OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4.1-mini
 
-# Optional local development provider
 LOCAL_LLM_BASE_URL=http://localhost:11434/v1
 LOCAL_LLM_MODEL=llama3.2
 LOCAL_LLM_API_KEY=ollama
@@ -139,44 +136,136 @@ LOCAL_LLM_API_KEY=ollama
 
 ### Create a new project
 
-- Use the project scaffolding script:
-
 ```bash
 npm run new:project -- "Project Name"
 ```
 
-- This creates a new folder inside:
+This creates:
 
-`content/projects/<slug>/`
+```txt
+content/projects/<slug>/
+├── meta.json
+└── content.mdx
+```
 
-- With the following files:
+Add the project screenshot here:
 
-`meta.json`
-`content.mdx`
+```txt
+public/screenshots/<slug>.png
+```
 
 ### Create a new blog post
-
-- Use the blog scaffolding script:
 
 ```bash
 npm run new:blog -- "Post Title"
 ```
 
-- This creates a new folder inside:
+This creates:
 
-`content/blog/<slug>/`
-
-- With the following files:
-
-`meta.json`
-`content.mdx`
+```txt
+content/blog/<slug>/
+├── meta.json
+└── content.mdx
+```
 
 ### Regenerate the content manifest
 
-- If your setup uses a generated content manifest, run:
-
 ```bash
-npm run generate:content
+npm run generate:manifest
 ```
 
-- If your script name differs, use the matching command defined in `package.json`.
+### Validate content
+
+```bash
+npm run validate:content
+```
+
+The validator checks JSON metadata, slug/folder consistency, content files, stack arrays, project image paths, and common missing fields.
+
+## Developer Workflow
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start Next.js locally |
+| `npm run build` | Create a production build |
+| `npm run lint` | Run ESLint |
+| `npm run typecheck` | Run TypeScript checks |
+| `npm run validate:content` | Validate project/blog content |
+| `npm run doctor` | Check local repo setup |
+| `npm run check` | Run lint, typecheck, content validation, and build |
+| `make check` | Same as `npm run check` |
+| `make doctor` | Run repo health checks |
+| `make validate` | Validate content |
+
+### Recommended flow before pushing
+
+```bash
+npm run check
+lazygit
+```
+
+For content-only changes:
+
+```bash
+npm run validate:content
+npm run build
+lazygit
+```
+
+## Quality Checks
+
+This repo includes GitHub Actions CI.
+
+On every push or pull request, CI runs:
+
+```txt
+npm ci
+npm run lint
+npm run typecheck
+npm run validate:content
+npm run build
+```
+
+This helps catch broken TypeScript, invalid content metadata, missing screenshots, and failed production builds before deployment.
+
+## SEO
+
+The repo includes:
+
+```txt
+app/sitemap.ts
+app/robots.ts
+```
+
+Set this in `.env.local` and in Vercel project environment variables:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://terminal-portfolio-eight-theta.vercel.app
+```
+
+## Docs
+
+More docs live in:
+
+```txt
+docs/CONTENT.md
+```
+
+Use the docs folder for deeper notes as the content system grows.
+
+## Deployment
+
+This app is designed to deploy on Vercel.
+
+Typical production flow:
+
+```bash
+npm run check
+git push
+```
+
+Vercel will build from the latest pushed commit.
+
+## License
+
+MIT License.
