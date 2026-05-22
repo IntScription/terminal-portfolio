@@ -1,0 +1,23 @@
+## Overview
+
+RunDeck is a fast terminal dashboard for managing personal development projects from one keyboard-driven interface. It helps developers jump between projects, open tmux workspaces, launch Neovim, use LazyGit, start local previews, manage deploy links, and keep project metadata organized without leaving the terminal.
+
+## Challenge
+
+My workflow involved constantly switching between project folders, tmux sessions, Neovim, LazyGit, localhost URLs, deployment links, and scattered notes. As the number of projects increased, it became harder to quickly open the right workspace, remember ports, manage project commands, and maintain a clean terminal-first development flow.
+
+## Solution
+
+I built RunDeck as a Rust-based terminal dashboard that centralizes project management into one TUI. It supports project discovery, tmux workspace launching, automatic stack detection, local preview shortcuts, deploy URL management, configurable keymaps, themes, and an optional Neovim/LazyVim companion workflow.
+
+I also added developer-focused distribution support through Homebrew, GitHub releases, Docker, Kubernetes manifests, and automated Homebrew tap updates when new version tags are pushed.
+
+## Outcome
+
+RunDeck turned my project workflow into a faster and more organized terminal experience. Instead of manually navigating folders and remembering commands, I can open RunDeck, select a project, launch the full workspace, manage Git, preview locally, and return to the dashboard with minimal context switching.
+
+## Highlights
+
+- Built a Rust terminal dashboard with project launching, tmux integration, stack detection, themes, and configurable keymaps.
+- Added macOS/Linux distribution support with GitHub releases, Homebrew tap installation, Docker, and Kubernetes examples.
+- Automated the Homebrew release flow so new version tags can update the Homebrew formula automatically.

@@ -1,0 +1,26 @@
+{
+  "title": "RunDeck - Personal Project Dashboard",
+  "slug": "rundeck-personal-project-dashboard",
+  "tagline": "A terminal dashboard for launching and managing personal dev projects.",
+  "description": "RunDeck is a Rust-based terminal dashboard that helps developers manage personal projects from one keyboard-driven interface. It integrates with tmux, Neovim, LazyGit, local previews, deploy links, stack detection, themes, and configurable keymaps to reduce context switching and make terminal-first development faster.",
+  "stack": [
+    "Rust",
+    "Terminal UI",
+    "tmux",
+    "Neovim",
+    "LazyGit",
+    "fzf",
+    "Homebrew",
+    "GitHub Actions",
+    "Docker",
+    "Kubernetes"
+  ],
+  "liveUrl": "",
+  "repoUrl": "https://github.com/IntScription/rundeck",
+  "appStoreUrl": "",
+  "playStoreUrl": "",
+  "image": "/screenshots/rundeck-personal-project-dashboard.png",
+  "featured": true,
+  "published": true,
+  "order": 10
+}
