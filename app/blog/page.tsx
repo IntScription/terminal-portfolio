@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Particles from "@/components/reactbits/particles";
 import { getAllBlogs } from "@/lib/content/blog";
 import { BlogList } from "@/components/blog/blog-list";
 import { BackLink } from "@/components/ui/back-link";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Writing about projects, process, systems, design choices, and lessons learned along the way.",
+};
 
 export default function BlogPage() {
   const posts = getAllBlogs();

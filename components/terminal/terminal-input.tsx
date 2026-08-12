@@ -36,6 +36,8 @@ export function TerminalInput({
 
   useEffect(() => {
     if (!prefillValue) return;
+    // Also notifies the parent via onPrefillConsumedAction, so this can't be adjusted during render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setValue(prefillValue);
     setHistoryIndex(null);
     onPrefillConsumedAction?.();

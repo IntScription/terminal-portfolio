@@ -1,9 +1,44 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import LogoLoop from "@/components/reactbits/logo-loop";
 import { getTechLogos } from "@/lib/project-tech-logos";
-import { getProjectBySlug } from "@/lib/content/projects";
+import { getAllProjects, getProjectBySlug } from "@/lib/content/projects";
 import { MDXRenderer } from "@/components/mdx/mdx-renderer";
 import { BackLink } from "@/components/ui/back-link";
+
+export function generateStaticParams() {
+  return getAllProjects().map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+
+  if (!project) return {};
+
+  const description = project.tagline || project.description;
+
+  return {
+    title: project.title,
+    description,
+    openGraph: {
+      title: project.title,
+      description,
+      type: "article",
+      images: project.image ? [{ url: project.image }] : undefined,
+    },
+    twitter: {
+      card: project.image ? "summary_large_image" : "summary",
+      title: project.title,
+      description,
+    },
+  };
+}
 
 export default async function ProjectDetailPage({
   params,
@@ -113,12 +148,14 @@ export default async function ProjectDetailPage({
             </div>
 
             {project.image ? (
-              <div className="order-1 overflow-hidden rounded-[28px] border border-[rgba(var(--border))] bg-white/40 shadow-[0_20px_60px_rgba(15,23,42,0.08)] lg:order-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-[28px] border border-[rgba(var(--border))] bg-white/40 shadow-[0_20px_60px_rgba(15,23,42,0.08)] lg:order-2">
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover"
+                  priority
                 />
               </div>
             ) : null}

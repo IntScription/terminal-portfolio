@@ -140,6 +140,12 @@ export function SiteHeader() {
   const [showIntro, setShowIntro] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>("tokyonight");
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setMobileOpen(false);
+  }
 
   const drawerX = useMotionValue(0);
   const backdropOpacity = useTransform(drawerX, [0, 320], [0.45, 0]);
@@ -152,16 +158,14 @@ export function SiteHeader() {
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
     if (stored && themeOptions.includes(stored)) {
+      // Reads a client-only external source (localStorage) that isn't available during SSR render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(stored);
       applyTheme(stored);
       return;
     }
     applyTheme("tokyonight");
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";

@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Particles from "@/components/reactbits/particles";
 import { getAllProjects } from "@/lib/content/projects";
 import { BackLink } from "@/components/ui/back-link";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Product builds, interfaces, and engineering-focused work presented as case studies.",
+};
 
 export default function ProjectsPage() {
   const projects = getAllProjects();
@@ -44,12 +52,13 @@ export default function ProjectsPage() {
               className="group overflow-hidden rounded-[30px] border border-[rgba(var(--border))] bg-white/65 shadow-[0_18px_40px_rgba(15,23,42,0.05)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/80 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:bg-white/8 dark:hover:bg-white/12"
             >
               {project.image ? (
-                <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(var(--border))]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative aspect-[16/9] overflow-hidden border-b border-[rgba(var(--border))]">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
               ) : null}

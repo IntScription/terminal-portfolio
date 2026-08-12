@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Transition } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type RotatingTextProps = {
@@ -12,12 +12,7 @@ type RotatingTextProps = {
   exit?: { y?: string | number; opacity?: number };
   staggerDuration?: number;
   splitLevelClassName?: string;
-  transition?: {
-    type?: string;
-    damping?: number;
-    stiffness?: number;
-    duration?: number;
-  };
+  transition?: Transition;
   rotationInterval?: number;
   splitBy?: "characters" | "words";
   auto?: boolean;

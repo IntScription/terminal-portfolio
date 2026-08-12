@@ -95,9 +95,12 @@ export function TerminalWindow({
         cwd?: TerminalDirectory;
       };
 
+      // Restores a client-only external source (localStorage) that isn't available during SSR render.
+      /* eslint-disable react-hooks/set-state-in-effect */
       if (parsed.lines) setLines(parsed.lines);
       if (parsed.history) setHistory(parsed.history);
       if (parsed.cwd) setCwd(parsed.cwd);
+      /* eslint-enable react-hooks/set-state-in-effect */
     } catch { }
   }, []);
 
@@ -115,12 +118,15 @@ export function TerminalWindow({
   }, [lines, history, cwd]);
 
   useEffect(() => {
+    // Reads a client-only external source (sessionStorage) that isn't available during SSR render.
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
       const alreadyPlayed = sessionStorage.getItem(DEMO_SESSION_KEY) === "1";
       setHasPlayedDemo(alreadyPlayed);
     } catch {
       setHasPlayedDemo(true);
     }
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {
@@ -152,8 +158,6 @@ export function TerminalWindow({
 
   useEffect(() => {
     if (minimized) return;
-
-    setActive(true);
 
     const timer = window.setTimeout(() => {
       const input = containerRef.current?.querySelector("input") as HTMLInputElement | null;
@@ -334,7 +338,7 @@ export function TerminalWindow({
         : {
           initial: { opacity: 0, y: 10 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.18, ease: "easeOut" },
+          transition: { duration: 0.18, ease: "easeOut" as const },
         },
     [reduceMotion]
   );

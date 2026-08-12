@@ -16,6 +16,8 @@ export function CommandPalette() {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [showHelp, setShowHelp] = useState(false);
+  const [prevQuery, setPrevQuery] = useState(query);
+  const [prevOpen, setPrevOpen] = useState(open);
 
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
@@ -69,9 +71,11 @@ export function CommandPalette() {
     item.label.toLowerCase().includes(query.toLowerCase())
   );
 
-  useEffect(() => {
+  if (query !== prevQuery || open !== prevOpen) {
+    setPrevQuery(query);
+    setPrevOpen(open);
     setActiveIndex(0);
-  }, [query, open]);
+  }
 
   useEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, filtered.length);

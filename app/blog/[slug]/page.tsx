@@ -1,10 +1,44 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogBySlug } from "@/lib/content/blog";
+import { getAllBlogs, getBlogBySlug } from "@/lib/content/blog";
 import { MDXRenderer } from "@/components/mdx/mdx-renderer";
 import { BackLink } from "@/components/ui/back-link";
 import { ReadingProgress } from "@/components/blog/reading-progress";
 import { TOC } from "@/components/blog/toc";
 import { calculateReadingTime, extractHeadings } from "@/lib/utils";
+
+export function generateStaticParams() {
+  return getAllBlogs().map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getBlogBySlug(slug);
+
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    keywords: post.tags,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.publishedAt,
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary",
+      title: post.title,
+      description: post.excerpt,
+    },
+  };
+}
 
 export default async function BlogPostPage({
   params,

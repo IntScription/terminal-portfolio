@@ -1,4 +1,4 @@
-import { GithubIcon, InstagramIcon, YoutubeIcon } from "lucide-react";
+import { SiGithub, SiInstagram, SiYoutube } from "react-icons/si";
 
 export function Footer() {
   return (
@@ -12,7 +12,7 @@ export function Footer() {
             className="transition duration-150 hover:scale-110 hover:text-foreground hover:drop-shadow-[0_0_10px_rgba(125,207,255,0.35)]"
             aria-label="GitHub"
           >
-            <GithubIcon size={20} />
+            <SiGithub size={20} />
           </a>
           <a
             href="https://youtube.com/"
@@ -21,7 +21,7 @@ export function Footer() {
             className="transition duration-150 hover:scale-110 hover:text-foreground hover:drop-shadow-[0_0_10px_rgba(255,0,0,0.25)]"
             aria-label="YouTube"
           >
-            <YoutubeIcon size={20} />
+            <SiYoutube size={20} />
           </a>
           <a
             href="https://instagram.com/"
@@ -30,7 +30,7 @@ export function Footer() {
             className="transition duration-150 hover:scale-110 hover:text-foreground hover:drop-shadow-[0_0_10px_rgba(255,121,198,0.25)]"
             aria-label="Instagram"
           >
-            <InstagramIcon size={20} />
+            <SiInstagram size={20} />
           </a>
         </div>
 

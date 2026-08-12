@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRenderer } from "@/components/mdx/mdx-renderer";
 import { getAboutContent, getProfileData } from "@/lib/content/site";
 import { BackLink } from "@/components/ui/back-link";
 import { InteractiveCard } from "@/components/ui/interactive-card";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Builder, designer, and systems-focused developer — how I think, work, and refine ideas into something usable.",
+};
 
 const principles = [
   {

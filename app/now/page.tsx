@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getNowData } from "@/lib/content/site";
 import { BackLink } from "@/components/ui/back-link";
 import { InteractiveCard } from "@/components/ui/interactive-card";
+
+export const metadata: Metadata = {
+  title: "Now",
+  description: "What I'm currently building, learning, and focused on.",
+};
 
 export default function NowPage() {
   const now = getNowData();

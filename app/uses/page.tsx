@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getUsesData, type UsesItem } from "@/lib/content/site";
 import { BackLink } from "@/components/ui/back-link";
 import { InteractiveCard } from "@/components/ui/interactive-card";
 import { StackGraph3D } from "@/components/uses/stack-graph-3d";
+
+export const metadata: Metadata = {
+  title: "Uses",
+  description:
+    "The tools, frameworks, and setup behind the workflow — frontend, app, and backend as one connected system.",
+};
 
 function getUsesItemName(item: UsesItem) {
   return typeof item === "string" ? item : item.name;

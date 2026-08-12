@@ -35,7 +35,6 @@ import {
   SiGo,
   SiGooglecloud,
   SiGraphql,
-  SiHeroku,
   SiHomebrew,
   SiHtml5,
   SiJavascript,
@@ -58,7 +57,6 @@ import {
   SiNodedotjs,
   SiNpm,
   SiNumpy,
-  SiOpenai,
   SiPandas,
   SiPhp,
   SiPnpm,
@@ -577,7 +575,7 @@ const logoMap: Record<string, ProjectLogoItem> = {
     href: "https://azure.microsoft.com",
   },
   Heroku: {
-    node: <SiHeroku />,
+    node: <FaCloud />,
     title: "Heroku",
     href: "https://www.heroku.com",
   },
@@ -713,7 +711,7 @@ const logoMap: Record<string, ProjectLogoItem> = {
 
   // AI / ML
   OpenAI: {
-    node: <SiOpenai />,
+    node: <FaRobot />,
     title: "OpenAI",
     href: "https://openai.com",
   },

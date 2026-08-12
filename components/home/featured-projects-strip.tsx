@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/content/projects";
 import { Reveal } from "@/components/ui/reveal";
@@ -39,11 +40,12 @@ export function FeaturedProjectsStrip() {
               {/* IMAGE */}
               {project.image && (
                 <div className="absolute inset-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover blur-[2px] transition duration-700 group-hover:scale-105 group-hover:blur-0"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover blur-[2px] transition duration-700 group-hover:scale-105 group-hover:blur-0"
                   />
                 </div>
               )}
